@@ -4,42 +4,17 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-    const carros = [
-      {
-        marca: 'toyota',
-        modelo: 'yaris',
-        logo: 'https://1000marcas.net/wp-content/uploads/2019/12/Toyota-logo.png'
-      }
-    ]
-     const[valueInput, setValueInput] = useState('')
-     const[vehiculos, setVehiculos] = useState(carros)
-     function add(e){
-       setValueInput(e.target.value)
-     }
-     function entrada(){
-       const array_vehiculos = [...vehiculos]
-       array_vehiculos.push({
-        marca: valueInput,
-        modelo: 'yaris',
-        logo: 'https://1000marcas.net/wp-content/uploads/2019/12/Toyota-logo.png'
-      })
-       setVehiculos(array_vehiculos)
-       setValueInput('')
-
-     }
+   const[luz, setLuz] = useState(false)
+   function onOff(){
+     setLuz(!luz)
+   }
   
   return(
     <div>
-      <div>
-        {vehiculos.map((e)=>(
-        <div>
-          {e.marca}
-        </div>))}
-      </div>
-      <div>
-        <input onChange={add} value={valueInput}/>
-        <button onClick={entrada}>Agregar</button>
-      </div>
+     <div>
+        <img src={luz ? 'https://www.definicionabc.com/wp-content/uploads/2013/05/Foco.jpg' : 'https://promart.vteximg.com.br/arquivos/ids/253113-700-700/115271.jpg?v=636703713955570000'}/>
+        <button onClick={onOff}>{luz ? 'Apagar' : 'Encender'}</button>
+     </div>
     </div>  
  )  
 }
