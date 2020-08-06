@@ -6,7 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 
 
 function App() {
- 
   const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
@@ -22,11 +21,13 @@ function App() {
     },
   }));
   const classes = useStyles();
-  const usuario = ['https://i.ytimg.com/vi/uhuxVFktLk4/maxresdefault.jpg']
-  const[valueInput, setValueInput] = useState('')
-  const[array, setArray] = useState(usuario)
-  
-  const onClickbuttonForm = () => {
+  const usuario = ["/static/images/avatar/1.jpg"]
+  const [valueInput,setValueInput] = useState('')
+  const [array, setArray] = useState(usuario)
+  const onChangeInputForm = (e) => {
+    setValueInput(e.target.value)
+  }
+  const onClickButtonForm = () => {
     const copyArray = [...array]
     copyArray.push(valueInput)
     setArray(copyArray)
@@ -34,29 +35,23 @@ function App() {
   }
   const onSubmitForm = (e) => {
     e.preventDefault()
-    onClickbuttonForm()
+    onClickButtonForm()
   }
-  const onChangeInputForm = (e) => {
-    setValueInput(e.target.value)
-  }
-
   return (
-    <form className={classes.root} onSubmit={onSubmitForm} noValidate autoComplete="off">
+    <form className={classes.root} onSubmit={onSubmitForm}noValidate autoComplete="off">
       <div className={classes.root_2}>
-      {array.map((e)=>(<Avatar alt={e} src={e}/>))}
+        {array.map((e)=>(<Avatar alt={e} src={e} />))}
       </div>
       <TextField 
-        id="standard-basic" 
-        label="Standard"
-        value={valueInput}
-        onChange={onChangeInputForm}
-         />
-         <button>
-           Agregar
-         </button>
-      
-    </form>
-    
+      id="outlined-basic" 
+      label="Outlined" 
+      variant="outlined"
+      value={valueInput}
+      onChange={onChangeInputForm} />
+      <button>
+        Agregar
+      </button>
+  </form>
   );
 }
 
